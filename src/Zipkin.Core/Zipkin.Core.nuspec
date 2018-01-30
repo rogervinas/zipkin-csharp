@@ -10,7 +10,7 @@
     <licenseUrl>https://github.com/openzipkin/zipkin-csharp/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/openzipkin/zipkin-csharp</projectUrl>
     <description>$description$</description>
-    <summary>$description$</summary>
+    <summary>$summary$</summary>
     <releaseNotes>Nuget package</releaseNotes>
     <copyright>Openzipkin 2017</copyright>
     <tags>zipkin tracing distributed performance</tags>
