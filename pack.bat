@@ -13,6 +13,6 @@ SET AUTHOR=openzipkin
 SET DESCRIPTION="A minimalistic .NET client library for Twitter Zipkin tracing."
 SET SUMMARY="Build from fork https://github.com/rogervinas/zipkin-csharp"
 
-%CACHED_NUGET% pack Zipkin.Core.nuspec -Properties title=%TITLE%;version=%VERSION%;author=%AUTHOR%;description=%DESCRIPTION%;summary=%SUMMARY% -OutputDirectory bin\Release
+%CACHED_NUGET% pack Zipkin.Core.csproj -IncludeReferencedProjects -Properties Configuration=Release;title=%TITLE%;version=%VERSION%;author=%AUTHOR%;description=%DESCRIPTION%;summary=%SUMMARY% -OutputDirectory ..\..
 
 popd
