@@ -20,14 +20,18 @@ namespace Zipkin
         /// events could indicate network retries. A lag between client or server send
         /// and wire send might indicate queuing or processing delay.
         /// </summary>
-        public static Annotation WireSend(DateTime timestamp) => new Annotation(AnnotationConstants.WireSend, timestamp);
+        public static Annotation WireSend(DateTime timestamp) {
+            return new Annotation(AnnotationConstants.WireSend, timestamp);
+        }
 
         /// <summary>
         /// Optionally logs an attempt to receive a message from the wire. Multiple wire
         /// receive events could indicate network retries. A lag between wire receive
         /// and client or server receive might indicate queuing or processing delay.
         /// </summary>
-        public static Annotation WireReceive(DateTime timestamp) => new Annotation(AnnotationConstants.WireReceive, timestamp);
+        public static Annotation WireReceive(DateTime timestamp) {
+            return new Annotation(AnnotationConstants.WireReceive, timestamp);
+        }
 
         /// <summary>
         /// The client sent ("cs") a request to a server. There is only one send per
@@ -41,7 +45,9 @@ namespace Zipkin
         /// event, almost always the client. When logging <see cref="ClientSend"/>, instrumentation
         /// should also log the <see cref="ServerAddress"/>.
         /// </summary>
-        public static Annotation ClientSend(DateTime timestamp) => new Annotation(AnnotationConstants.ClientSend, timestamp);
+        public static Annotation ClientSend(DateTime timestamp) {
+            return new Annotation(AnnotationConstants.ClientSend, timestamp);
+        }
 
         /// <summary>
         /// The client received ("cr") a response from a server. There is only one
@@ -55,7 +61,9 @@ namespace Zipkin
         /// event, almost always the client. The actual endpoint of the server is
         /// recorded separately as <see cref="ServerAddress"/> when <see cref="ClientSend"/> is logged.
         /// </summary>
-        public static Annotation ClientReceive(DateTime timestamp) => new Annotation(AnnotationConstants.ClientReceive, timestamp);
+        public static Annotation ClientReceive(DateTime timestamp) {
+            return new Annotation(AnnotationConstants.ClientReceive, timestamp);
+        }
         
         /// <summary>
         /// The server sent ("ss") a response to a client. There is only one response
@@ -72,7 +80,9 @@ namespace Zipkin
         /// event, almost always the server. The actual endpoint of the client is
         /// recorded separately as <see cref="ClientAddress"/> when <see cref="ServerReceive"/> is logged.
         /// </summary>
-        public static Annotation ServerSend(DateTime timestamp) => new Annotation(AnnotationConstants.ServerSend, timestamp);
+        public static Annotation ServerSend(DateTime timestamp) {
+            return new Annotation(AnnotationConstants.ServerSend, timestamp);
+        }
 
         /// <summary>
         /// The server received ("sr") a request from a client. There is only one
@@ -89,54 +99,72 @@ namespace Zipkin
         /// event, almost always the server. When logging <see cref="ServerReceive"/>, instrumentation
         /// should also log the <see cref="ClientAddress"/>.
         /// </summary>
-        public static Annotation ServerReceive(DateTime timestamp) => new Annotation(AnnotationConstants.ServerReceive, timestamp);
+        public static Annotation ServerReceive(DateTime timestamp) {
+            return new Annotation(AnnotationConstants.ServerReceive, timestamp);
+        }
         
         /// <summary>
         /// Optionally logs progress of a (<see cref="ClientSend"/>, <see cref="WireSend"/>). For example, this
         /// could be one chunk in a chunked request.
         /// </summary>
-        public static Annotation ClientSendFragment(DateTime timestamp) => new Annotation(AnnotationConstants.ClientSendFragment, timestamp);
+        public static Annotation ClientSendFragment(DateTime timestamp) {
+            return new Annotation(AnnotationConstants.ClientSendFragment, timestamp);
+        }
 
         /// <summary>
         /// Optionally logs progress of a (<see cref="ClientReceive"/>, <see cref="WireReceive"/>). For example, this
         /// could be one chunk in a chunked response.
         /// </summary>
-        public static Annotation ClientReceiveFragment(DateTime timestamp) => new Annotation(AnnotationConstants.ClientReceiveFragment, timestamp);
+        public static Annotation ClientReceiveFragment(DateTime timestamp) {
+            return new Annotation(AnnotationConstants.ClientReceiveFragment, timestamp);
+        }
 
         /// <summary>
         /// Optionally logs progress of a (<see cref="ServerSend"/>, <see cref="WireSend"/>). For example, this
         /// could be one chunk in a chunked response.
         /// </summary>
-        public static Annotation ServerSendFragment(DateTime timestamp) => new Annotation(AnnotationConstants.ServerSendFragment, timestamp);
+        public static Annotation ServerSendFragment(DateTime timestamp) {
+            return new Annotation(AnnotationConstants.ServerSendFragment, timestamp);
+        }
 
         /// <summary>
         /// Optionally logs progress of a (<see cref="ServerReceive"/>, <see cref="WireReceive"/>). For example, this
         /// could be one chunk in a chunked request.
         /// </summary>
-        public static Annotation ServerReceiveFragment(DateTime timestamp) => new Annotation(AnnotationConstants.ServerSendFragment, timestamp);
+        public static Annotation ServerReceiveFragment(DateTime timestamp) {
+            return new Annotation(AnnotationConstants.ServerSendFragment, timestamp);
+        }
 
         /// <summary>
         /// Indicates a client address ("ca") in a span. Most likely, there's only one.
         /// Multiple addresses are possible when a client changes its ip or port within
         /// a span.
         /// </summary>
-        public static BinaryAnnotation ClientAddress(IPEndPoint endpoint) => new BinaryAnnotation(AnnotationConstants.ClientAddress, TrueBinary, AnnotationType.Bool, endpoint);
+        public static BinaryAnnotation ClientAddress(IPEndPoint endpoint) {
+            return new BinaryAnnotation(AnnotationConstants.ClientAddress, TrueBinary, AnnotationType.Bool, endpoint);
+        }
 
         /// <summary>
         /// Indicates a server address ("sa") in a span. Most likely, there's only one.
         /// Multiple addresses are possible when a client is redirected, or fails to a
         /// different server ip or port.
         /// </summary>
-        public static BinaryAnnotation ServerAddress(IPEndPoint endpoint) => new BinaryAnnotation(AnnotationConstants.ServerAddress, TrueBinary, AnnotationType.Bool, endpoint);
+        public static BinaryAnnotation ServerAddress(IPEndPoint endpoint) {
+            return new BinaryAnnotation(AnnotationConstants.ServerAddress, TrueBinary, AnnotationType.Bool, endpoint);
+        }
 
         /// <summary>
         /// Creates a <see cref="BinaryAnnotation"/> for a boolean value.
         /// </summary>
-        public static BinaryAnnotation Binary(string key, bool value) => new BinaryAnnotation(key, value ? TrueBinary : FalseBinary, AnnotationType.Bool);
+        public static BinaryAnnotation Binary(string key, bool value) {
+            return new BinaryAnnotation(key, value ? TrueBinary : FalseBinary, AnnotationType.Bool);
+        }
         
         /// <summary>
         /// Creates a <see cref="BinaryAnnotation"/> for a string integer.
         /// </summary>
-        public static BinaryAnnotation Binary(string key, string value) => new BinaryAnnotation(key, Encoding.UTF8.GetBytes(value), AnnotationType.String);
+        public static BinaryAnnotation Binary(string key, string value) {
+            return new BinaryAnnotation(key, Encoding.UTF8.GetBytes(value), AnnotationType.String);
+        }
     }
 }

@@ -45,7 +45,7 @@ namespace Zipkin.Tracer.Kafka
                 var res = result.First();
                 if (res.Error != 0)
                 {
-                    throw new ZipkinCollectorException($"An error (code: {res.Error}) occurred while sending trace data to zipkin-kafka");
+                    throw new ZipkinCollectorException("An error (code: {res.Error}) occurred while sending trace data to zipkin-kafka");
                 }
             }
         }

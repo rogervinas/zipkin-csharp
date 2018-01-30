@@ -155,8 +155,16 @@ namespace Zipkin
         /// with <paramref name="endpoint"/> set and all other fields copied 
         /// from the current instance.
         /// </summary>
-        public BinaryAnnotation WithEndpoint(IPEndPoint endpoint) => new BinaryAnnotation(Key, Value, AnnotationType, endpoint);
-        
-        public override string ToString() => $"BinaryAnnotation({Key}, {Value}, {AnnotationType}, {Endpoint})";
+        public BinaryAnnotation WithEndpoint(IPEndPoint endpoint) {
+            return new BinaryAnnotation(Key, Value, AnnotationType, endpoint);
+        }
+
+        public override string ToString()
+        {
+            return String.Format(
+                "BinaryAnnotation({0}, {1}, {2}, {3})",
+                Key, Value, AnnotationType, Endpoint
+            );
+        }
     }
 }

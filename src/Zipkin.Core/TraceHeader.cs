@@ -66,7 +66,10 @@ namespace Zipkin
         /// <summary>
         /// Creates a trace header for the new span being a child of the span identified by current trace header.
         /// </summary>
-        public TraceHeader Child(ulong childId) => new TraceHeader(TraceId, childId, SpanId, IsDebug);
+        public TraceHeader Child(ulong childId)
+        {
+            return new TraceHeader(TraceId, childId, SpanId, IsDebug);
+        }
 
         public bool Equals(TraceHeader other)
         {

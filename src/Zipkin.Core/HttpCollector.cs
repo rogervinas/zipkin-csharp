@@ -25,7 +25,10 @@ namespace Zipkin
         public HttpCollector(Uri url)
         {
             if (!url.IsAbsoluteUri)
-                throw new ArgumentException($"URI '{url}' should be an absolute URI path to zipkin server");
+                throw new ArgumentException(String.Format(
+                    "URI '{0}' should be an absolute URI path to zipkin server",
+                    url
+                ));
 
             if (url.PathAndQuery == "/")
                 url = new Uri(url, "api/v1/spans");
@@ -58,7 +61,10 @@ namespace Zipkin
             using (var reply = (HttpWebResponse)await request.GetResponseAsync())
             {
                 if (reply.StatusCode != HttpStatusCode.Accepted)
-                    throw new ZipkinCollectorException($"Zipkin HTTP receiver responded with status code {reply.StatusCode}");
+                    throw new ZipkinCollectorException(String.Format(
+                        "Zipkin HTTP receiver responded with status code {0}",
+                        reply.StatusCode
+                    ));
             }
         }
     }
