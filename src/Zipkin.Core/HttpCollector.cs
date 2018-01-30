@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Thrift.Protocol;
 using Thrift.Transport;
 using Zipkin.Thrift;
+using System.Collections.Specialized;
 
 namespace Zipkin
 {
@@ -21,6 +22,7 @@ namespace Zipkin
     public class HttpCollector : ISpanCollector
     {
         private Uri _url;
+        private NameValueCollection _requestHeaders = new NameValueCollection();
 
         public HttpCollector(Uri url)
         {
@@ -45,6 +47,7 @@ namespace Zipkin
             var request = WebRequest.CreateHttp(_url);
             request.Method = "POST";
             request.ContentType = "application/x-thrift";
+            request.Headers.Add(_requestHeaders);
 
             using (var output = new MemoryStream())
             {
@@ -66,6 +69,11 @@ namespace Zipkin
                         reply.StatusCode
                     ));
             }
+        }
+
+        public void AddRequestHeader(string name, string value)
+        {
+            _requestHeaders.Add(name, value);
         }
     }
 }
