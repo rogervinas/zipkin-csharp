@@ -49,18 +49,26 @@ namespace Zipkin
         /// <paramref name="timestamp"/> set and all other fields copied 
         /// from current instance.
         /// </summary>
-        public Annotation WithTimestamp(DateTime timestamp) => new Annotation(Value, timestamp, Endpoint);
+        public Annotation WithTimestamp(DateTime timestamp) {
+            return new Annotation(Value, timestamp, Endpoint);
+        }
 
         /// <summary>
         /// Returns a new instance of the <see cref="Annotation"/> with 
         /// <paramref name="endpoint"/> set and all other fields copied 
         /// from current instance.
         /// </summary>
-        public Annotation WithEndpoint(IPEndPoint endpoint) => new Annotation(Value, Timestamp, endpoint);
+        public Annotation WithEndpoint(IPEndPoint endpoint) {
+            return new Annotation(Value, Timestamp, endpoint);
+        }
 
-        public bool Equals(Annotation other) => other.Timestamp == Timestamp && Equals(other.Value, Value) && Equals(other.Endpoint, Endpoint);
+        public bool Equals(Annotation other) {
+            return other.Timestamp == Timestamp && Equals(other.Value, Value) && Equals(other.Endpoint, Endpoint);
+        }
 
-        public override bool Equals(object obj) => obj is Annotation && Equals((Annotation)obj);
+        public override bool Equals(object obj) {
+            return obj is Annotation && Equals((Annotation)obj);
+        }
 
         public override int GetHashCode()
         {
@@ -73,6 +81,8 @@ namespace Zipkin
             }
         }
 
-        public override string ToString() => $"Annotation({Value}, {Timestamp.ToString("O")}, {Endpoint})";
+        public override string ToString() {
+            return String.Format("Annotation({1}, {2}, {3})", Value, Timestamp.ToString("O"), Endpoint);
+        }
     }
 }

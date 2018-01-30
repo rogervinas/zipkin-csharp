@@ -12,9 +12,13 @@ namespace Zipkin.Tracer.Kafka
     [Serializable]
     public sealed class KafkaSettings
     {
-        public static KafkaSettings Default => new KafkaSettings("zipkin", 20, 1000, new []{ "http://localhost:9092" });
-        public static KafkaSettings Create(params Uri[] serverUris)
-            => new KafkaSettings("zipkin", 20, 1000, serverUris.Select(x => x.ToString()).ToArray());
+        public static KafkaSettings Default() {
+            return new KafkaSettings("zipkin", 20, 1000, new []{ "http://localhost:9092" });
+        }
+
+        public static KafkaSettings Create(params Uri[] serverUris) {
+            return new KafkaSettings("zipkin", 20, 1000, serverUris.Select(x => x.ToString()).ToArray());
+        }
 
         public KafkaSettings(string zipkinTopic, int maxAsyncRequests, int maxMessageBuffer, string[] serverUris)
         {
@@ -24,9 +28,9 @@ namespace Zipkin.Tracer.Kafka
             MaxMessageBuffer = maxMessageBuffer;
         }
 
-        public string[] ServerUris { get; }
-        public int MaxAsyncRequests { get; }
-        public int MaxMessageBuffer { get; }
-        public string ZipkinTopic { get; }
+        public string[] ServerUris { get; set; }
+        public int MaxAsyncRequests { get; set; }
+        public int MaxMessageBuffer { get; set;  }
+        public string ZipkinTopic { get; set;  }
     }
 }
